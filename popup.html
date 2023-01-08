@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <style>
+    button {
+      padding: 10px;
+      font-size: 14px;
+      border: none;
+      border-radius: 4px;
+      background-color: #4CAF50;
+      color: grey;
+      cursor: pointer;
+    }
+
+    .highlight{
+    color: aqua;
+    }
+  </style>
+
+</head>
+<body>
+
+  <style>
+    .highlight{
+    color: aqua;
+    }
+
+  </style>
+  <button id="highlight-button">Highlight</button>
+  <script>
+    // Get the highlight button
+    var highlightButton = document.getElementById('highlight-button');
+    // Add an event listener to the button
+    highlightButton.addEventListener('click', function() {
+      // Send a message to the content script to highlight the selected text
+      chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        var activeTab = tabs[0];
+        chrome.tabs.sendMessage(activeTab.id, {"message": "highlight_text"});
+      });
+    });
+  </script>
+  <script src="background.js"></script>
+  <script src="content.js"></script>
+</body>
+</html>

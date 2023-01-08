@@ -1,0 +1,15 @@
+{
+    "manifest_version": 2,
+    "name": "Highlighter",
+    "description": "A simple extension that allows the user to highlight text on a webpage.",
+    "version": "1.0",
+    "permissions": ["activeTab"],
+    "background": {
+      "scripts": ["background.js","content.js"]
+    },
+    "browser_action": {
+      "default_title": "Highlighter",
+      "default_popup": "popup.html"
+    }
+  }
+  
