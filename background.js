@@ -17,4 +17,17 @@ chrome.runtime.onMessage.addListener(
     // Update the webpage with the highlighted text
     document.body.innerHTML = html;
   }
+
+  
+    // Get the highlight button
+    var highlightButton = document.getElementById('highlight-button');
+    // Add an event listener to the button
+    highlightButton.addEventListener('click', function() {
+      // Send a message to the content script to highlight the selected text
+      chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        var activeTab = tabs[0];
+        chrome.tabs.sendMessage(activeTab.id, {"message": "highlight_text"});
+      });
+    });
+  
   
